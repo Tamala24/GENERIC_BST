@@ -10,30 +10,22 @@ class Nodo {
 		data = d;
 	}
 	~Nodo() {
-		//delete[] d;
-		//delete[] i;
 		delete this;
 	}
 };
 
 template<typename T>
-class Grafo {
+class Bst {
 	public:
 	Nodo<T>* raiz;
 	int size;
-	Grafo(T d) {
+	Bst(T d) {
 		raiz = new Nodo<T>(d);
 		size = 1;
 	} 
-	/*void insert(T d, Nodo<T>* k) {
-		if(k == nullptr) {
-			k = new Nodo<T>(d);
-		} else if(d > (k->data)) {
-			insert(d, k->d);
-		} else
-			insert(d, k->i);
-		size++;
-	}*/ // Insertamos mayores a la derecha y menores a la izquierda
+	~Bst() {
+		delete raiz;
+	}
 	Nodo<T>* insert(T d, Nodo<T>* k) {
 		if(k == nullptr) {	
 			size++;
@@ -44,7 +36,6 @@ class Grafo {
 			k->i = insert(d, k->i);	
 		return k;
 	} // Insertamos mayores a la derecha y menores a la izquierda
-
 	Nodo<T>* search(T d, Nodo<T>* k) {
 		if(k == nullptr) {
 			return nullptr;
@@ -93,7 +84,7 @@ class Grafo {
 int main() {
 	char d;
 	std::cin >> d;
-	Grafo g(d);
+	Bst g(d);
 	std::cin >> d;
 	g.insert(d, g.raiz);	
 	std::cin >> d;
